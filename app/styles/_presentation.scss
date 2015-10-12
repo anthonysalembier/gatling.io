@@ -1,0 +1,22 @@
+@import 'variables';
+
+#presentation {
+  @include dflex();
+  @include flex-direction(column);
+  @include justify-content(center);
+
+  .element {
+    max-width: 700px;
+    @include dflex();
+    align-items: center;
+    margin: 60px auto auto auto;
+
+    .text {
+
+    }
+
+    .img {
+      margin: 0 15px;
+    }
+  }
+}

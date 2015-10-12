@@ -1,0 +1,249 @@
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Maven Archetype &mdash; Gatling documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0-SNAPSHOT',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="/scripts/vendor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Gatling documentation" href="../index.html" />
+    <link rel="up" title="Extensions" href="index.html" />
+    <link rel="next" title="Jenkins Plugin" href="jenkins_plugin.html" />
+    <link rel="prev" title="Maven Plugin" href="maven_plugin.html" />
+<!--[if IE]>
+<script src="/vendor/javascripts/html5shiv.min.js"></script>
+<![endif]-->
+
+<!--[if IE 6]>
+<script src="/vendor/javascripts/PIE_IE678.min.js"></script>
+<![endif]-->
+<!--[if IE 7]>
+<script src="/vendor/javascripts/PIE_IE678.min.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<script src="/vendor/javascripts/PIE_IE9.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+  // @formatter:off
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53375088-1', 'gatling.io');
+  ga('send', 'pageview');
+  // @formatter:on
+</script>
+
+<script type='text/javascript'>
+  $(document).ready(function () {
+    $('#affix').affix({
+      offset: {
+        top: 48
+      }
+    });
+
+    $('body').scrollspy({
+      target: '#affix'
+    })
+  });
+</script>
+
+  </head>
+  <body>
+<header id="header" class="navbar navbar-static-top" role="banner">
+  <div class="container">
+    <div class="navbar" role="navigation">
+      <form action="../search.html" class="col-xs-12 col-sm-6 col-md-4" method="get" role="form">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Search through the documentation"/>
+
+            <div class="input-group-addon">
+              <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+            <div class="input-group-addon">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="check_keywords" value="yes"/>
+        <input type="hidden" name="area" value="default"/>
+      </form>
+
+      <nav id="navbar-collapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/#/">HOME</a></li>
+          <li><a href="/#/download">DOWNLOAD</a></li>
+          <li class="active"><a href="/#/docs">DOCUMENTATION</a></li>
+          <li><a href="/#/services">PROFESSIONAL SERVICES</a></li>
+          <li><a class="icon icon-github" href="https://github.com/gatling/gatling"></a></li>
+          <li><a class="icon icon-twitter" href="https://twitter.com/GatlingTool"></a></li>
+          <li><a class="icon icon-googlegroup" href="https://groups.google.com/forum/#!forum/gatling"></a></li>
+        </ul>
+      </nav>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </div>
+</header>
+
+<section id="doc">
+  <div class="container">
+    <section class="row">
+      <div class="col-md-9">
+          <ul class="breadcrumb">
+            <li><a href="../index.html">Gatling documentation</a></li>
+            <li><a href="index.html"
+              accesskey="U">
+              Extensions
+              </a>
+            </li>
+            <li><a href="">
+              Maven Archetype
+            </a></li>
+          </ul>
+          
+  <div class="section" id="maven-archetype">
+<span id="id1"></span><h1>Maven Archetype<a class="headerlink" href="#maven-archetype" title="Permalink to this headline">¶</a></h1>
+<p>Gatling&#8217;s Maven Archetype allows you to integrate Gatling and run it into your preferred IDE.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You need :</p>
+<ul class="simple">
+<li>an IDE which supports Scala, like <a class="reference external" href="http://scala-ide.org/">Scala IDE</a> or <a class="reference external" href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.</li>
+<li><a class="reference external" href="http://maven.apache.org/">Maven</a></li>
+</ul>
+</div>
+<div class="section" id="creating-a-project-using-the-archetype">
+<h2>Creating a project using the Archetype<a class="headerlink" href="#creating-a-project-using-the-archetype" title="Permalink to this headline">¶</a></h2>
+<p>The Maven&#8217;s coordinates for the archetype are <tt class="docutils literal"><span class="pre">io.gatling.highcharts:gatling-highcharts-maven-archetype</span></tt>.</p>
+<p>You can either use your IDE&#8217;s facilities for creating a new project using a Maven archetype or, from the command line, type:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="n">mvn</span> <span class="n">archetype</span><span class="k">:</span><span class="kt">generate</span>
+</pre></div>
+</div>
+<p>Then, when prompted:</p>
+<div class="highlight-scala"><div class="highlight"><pre>Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains):
+</pre></div>
+</div>
+<p>Type <tt class="docutils literal"><span class="pre">gatling</span></tt>. You should then see:</p>
+<div class="highlight-scala"><div class="highlight"><pre>Choose archetype:
+1: remote -&gt; io.gatling.highcharts:gatling-highcharts-maven-archetype (gatling-highcharts-maven-archetype)
+</pre></div>
+</div>
+<p>Type <tt class="docutils literal"><span class="pre">1</span></tt> to select the archetype, then select the version to use (We recommend to always use the latest version.</p>
+<p>Select the <tt class="docutils literal"><span class="pre">groupId</span></tt>, <tt class="docutils literal"><span class="pre">artifactId</span></tt> and package name for your classes before confirming the archetype creation.</p>
+<p>Finish by importing the archetype into your preferred IDE.</p>
+</div>
+<div class="section" id="using-the-archetype">
+<h2>Using the Archetype<a class="headerlink" href="#using-the-archetype" title="Permalink to this headline">¶</a></h2>
+<p>After importing the project, its structure should look like that:</p>
+<a class="reference internal image-reference" href="../_images/archetype_structure.png"><img alt="Archetype Structure" src="../_images/archetype_structure.png" style="width: 492.8px; height: 373.8px;" /></a>
+<p>The archetype structure closely follows the bundle&#8217;s structure :</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">data</span></tt> is where the files for your feeders are to be stored</li>
+<li><tt class="docutils literal"><span class="pre">request-bodies</span></tt> is where your request bodies are to be stored</li>
+<li>Your simulations will live under <tt class="docutils literal"><span class="pre">src/test/scala</span></tt></li>
+</ul>
+<div class="section" id="running-gatling">
+<h3>Running Gatling<a class="headerlink" href="#running-gatling" title="Permalink to this headline">¶</a></h3>
+<p>Simply launch the <tt class="docutils literal"><span class="pre">Engine</span></tt> class in your IDE.</p>
+<p>Simulation reports will be written in the <tt class="docutils literal"><span class="pre">target</span></tt> directory.</p>
+</div>
+<div class="section" id="running-the-recorder">
+<h3>Running the Recorder<a class="headerlink" href="#running-the-recorder" title="Permalink to this headline">¶</a></h3>
+<p>Simply launch the <tt class="docutils literal"><span class="pre">Recorder</span></tt> class in your IDE.</p>
+<p>Simulations will be generated in the <tt class="docutils literal"><span class="pre">src/test/scala</span></tt> directory.</p>
+</div>
+</div>
+</div>
+
+
+        </div>
+        <div class="col-md-3">
+          <aside id="affix" class="visible-md visible-lg">
+            <ul class="nav">
+<li><a class="reference internal" href="#">Maven Archetype</a><ul class="nav">
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#creating-a-project-using-the-archetype">Creating a project using the Archetype</a></li>
+<li><a class="reference internal" href="#using-the-archetype">Using the Archetype</a><ul class="nav">
+<li><a class="reference internal" href="#running-gatling">Running Gatling</a></li>
+<li><a class="reference internal" href="#running-the-recorder">Running the Recorder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+<hr>
+<ul class="nav">
+  <li>
+    <a href="https://github.com/gatling/gatling/edit/master/src/sphinx/extensions/maven_archetype.rst">Edit this page on Github</a>
+  </li>
+  <h5>Previous topic</h5>
+  <li>
+    <a href="maven_plugin.html" title="Previous Chapter: Maven Plugin">
+      Maven Plugin
+    </a>
+  </li>
+  <h5>Next topic</h5>
+  <li>
+    <a href="jenkins_plugin.html" title="Next Chapter: Jenkins Plugin">
+      Jenkins Plugin
+    </a>
+  </li>
+</ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<footer id="footer">
+  <header class="row-fluid">
+    <div class="content-wrapper text-center">
+      Gatling is an open-source load testing framework based on
+      <strong>Scala</strong>, <strong>Akka</strong> and <strong>Netty</strong>
+    </div>
+  </header>
+  <section class="row-fluid">
+    <div class="content-wrapper text-center">&copy;2014 eBusiness Information 2000-2014</div>
+  </section>
+</footer>
+
+
+
+
+
+
+  </body>
+</html>

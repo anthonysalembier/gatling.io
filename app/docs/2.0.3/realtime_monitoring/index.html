@@ -1,0 +1,418 @@
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Realtime monitoring &mdash; Gatling documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0-SNAPSHOT',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="/scripts/vendor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Gatling documentation" href="../index.html" />
+    <link rel="next" title="Extensions" href="../extensions/index.html" />
+    <link rel="prev" title="JMS" href="../jms.html" />
+<!--[if IE]>
+<script src="/vendor/javascripts/html5shiv.min.js"></script>
+<![endif]-->
+
+<!--[if IE 6]>
+<script src="/vendor/javascripts/PIE_IE678.min.js"></script>
+<![endif]-->
+<!--[if IE 7]>
+<script src="/vendor/javascripts/PIE_IE678.min.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<script src="/vendor/javascripts/PIE_IE9.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+  // @formatter:off
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53375088-1', 'gatling.io');
+  ga('send', 'pageview');
+  // @formatter:on
+</script>
+
+<script type='text/javascript'>
+  $(document).ready(function () {
+    $('#affix').affix({
+      offset: {
+        top: 48
+      }
+    });
+
+    $('body').scrollspy({
+      target: '#affix'
+    })
+  });
+</script>
+
+  </head>
+  <body>
+<header id="header" class="navbar navbar-static-top" role="banner">
+  <div class="container">
+    <div class="navbar" role="navigation">
+      <form action="../search.html" class="col-xs-12 col-sm-6 col-md-4" method="get" role="form">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Search through the documentation"/>
+
+            <div class="input-group-addon">
+              <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+            <div class="input-group-addon">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="check_keywords" value="yes"/>
+        <input type="hidden" name="area" value="default"/>
+      </form>
+
+      <nav id="navbar-collapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/#/">HOME</a></li>
+          <li><a href="/#/download">DOWNLOAD</a></li>
+          <li class="active"><a href="/#/docs">DOCUMENTATION</a></li>
+          <li><a href="/#/services">PROFESSIONAL SERVICES</a></li>
+          <li><a class="icon icon-github" href="https://github.com/gatling/gatling"></a></li>
+          <li><a class="icon icon-twitter" href="https://twitter.com/GatlingTool"></a></li>
+          <li><a class="icon icon-googlegroup" href="https://groups.google.com/forum/#!forum/gatling"></a></li>
+        </ul>
+      </nav>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </div>
+</header>
+
+<section id="doc">
+  <div class="container">
+    <section class="row">
+      <div class="col-md-9">
+          <ul class="breadcrumb">
+            <li><a href="../index.html">Gatling documentation</a></li>
+            <li><a href="">
+              Realtime monitoring
+            </a></li>
+          </ul>
+          
+  <div class="section" id="realtime-monitoring">
+<span id="id1"></span><h1>Realtime monitoring<a class="headerlink" href="#realtime-monitoring" title="Permalink to this headline">¶</a></h1>
+<p>Gatling provides live statistics via the Graphite protocol so that you don&#8217;t have to wait for the generation of the final report to analyse the simulation.
+The graphite protocol is widely suppported by a number of tools. This includes both serverside monitoring and analytics databases.</p>
+<p>In this way you can also monitor what happens in Gatling AND the system under test. All the data can be collected in one central repository for correlation.</p>
+<p>The sections below describe both systems that collect data (Gatling, collectd, &#8220;Powershell functions&#8221;, etc) and tools that recieve and process the data (Graphite, InfluxDB, and other timeseries databases).</p>
+<p>The data the gatling pumps out via the graphite protocol can also be used to customize, tailor to your specific needs, the console output see below.</p>
+<div class="section" id="metrics">
+<h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Two types of metrics are provided by Gatling  :</dt>
+<dd><ul class="first last simple">
+<li>Users metrics</li>
+<li>Requests metrics</li>
+</ul>
+</dd>
+</dl>
+<p>Gatling pushes this data to Graphite every second.</p>
+<div class="section" id="user-metrics">
+<h3>User metrics<a class="headerlink" href="#user-metrics" title="Permalink to this headline">¶</a></h3>
+<p>Users metrics give you, for each scenario of your simulation (or all scenarios using <em>allUsers</em>) :</p>
+<ul class="simple">
+<li><em>waiting</em> : # of users waiting to start the scenario</li>
+<li><em>active</em> : # of users currently running the scenario</li>
+<li><em>done</em> : # of users who have completed the scenario</li>
+</ul>
+<p>The metric path for users metrics is <em>gatling.scenarioName.users.metric</em>, where :</p>
+<ul class="simple">
+<li><em>scenarioName</em> is the name of your scenario</li>
+<li><em>metric</em> is one of the metrics described above</li>
+</ul>
+</div>
+<div class="section" id="request-metrics">
+<h3>Request metrics<a class="headerlink" href="#request-metrics" title="Permalink to this headline">¶</a></h3>
+<p>Requests metrics give you, for each request (or all requests using _allRequests_) and by status (OK, KO and both) :</p>
+<ul class="simple">
+<li><em>count</em> : requests/sec</li>
+<li><em>min</em> and <em>max</em> : Min and Max response time for the request</li>
+<li><em>percentilesXX</em> :  First and second percentiles, as defined in gatling.conf (defaults are 95th and 99th percentiles)</li>
+</ul>
+<p>The metric path for requests metrics is <em>gatling.simulationId.requestName.status.metric</em>, where :</p>
+<ul class="simple">
+<li><em>simulationId</em> is a sanitized named computed from the name of your Simulation, or the one you set in the command line prompt</li>
+<li><em>requestName</em> is the name of your request</li>
+<li><em>status</em> is either <strong>ok</strong> (for successful requests), <strong>ko</strong> (for failed requests) or <strong>all</strong> (for both successful and failed requests)</li>
+<li><em>metric</em> is one of the metrics described above</li>
+</ul>
+</div>
+<div class="section" id="system-under-test-metrics">
+<h3>System under test metrics<a class="headerlink" href="#system-under-test-metrics" title="Permalink to this headline">¶</a></h3>
+<p>The system under test can send realtime data as follows to provide good visibility. This could be anything from cpu utilisation to database reads.
+Following the &#8220;unix philosophy&#8221; sending the data to timeseries database and charting engines provides high quality monitoring and allows Gatling to focus on the load generation.</p>
+<ul class="simple">
+<li>For <em>Linux</em> collectd can collect system metrics and has plugins for a number of products such as mysql.</li>
+<li>For <em>Windows</em> &#8220;Graphite-PowerShell-Functions&#8221; on Github exposes windows performance counters to the graphite protocol.</li>
+</ul>
+<p>For a complete list of tools that support sending data using the graphite protocol see: <a class="reference external" href="http://graphite.readthedocs.org/en/latest/tools.html">http://graphite.readthedocs.org/en/latest/tools.html</a></p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Gatling needs to be configured to send metrics.
+In addition the tool that recieves and processes the data needs to be configured. For example one of Graphite, InfluxDB or other timeseries database that supports the Graphite protocol.</p>
+<div class="section" id="gatling-configuration">
+<h3>Gatling Configuration<a class="headerlink" href="#gatling-configuration" title="Permalink to this headline">¶</a></h3>
+<p>In <tt class="docutils literal"><span class="pre">$GATLING_HOME/conf/gatling.conf</span></tt>, be sure to :</p>
+<ul class="simple">
+<li>have the GraphiteDataWriter in the list of writers</li>
+<li>have the correct host and port for Graphite</li>
+</ul>
+<div class="highlight-scala"><div class="highlight"><pre>data {
+  writers = &quot;console, file, graphite&quot;
+  reader = file
+
+  graphite {
+    host = &quot;192.168.56.101&quot;
+    port = 2003
+    #light = false              # only send the all* stats
+    #protocol = &quot;tcp&quot;           # Choose between &#39;tcp&#39; or &#39;udp&#39;
+    #rootPathPrefix = &quot;gatling&quot;
+    #bucketWidth = 100
+    #bufferSize = 8192
+  }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="graphite-tool-configuration">
+<h3>Graphite tool configuration<a class="headerlink" href="#graphite-tool-configuration" title="Permalink to this headline">¶</a></h3>
+<p>In <tt class="docutils literal"><span class="pre">$GRAPHITE_HOME/conf/storage-schemas.conf</span></tt>:</p>
+<div class="highlight-scala"><div class="highlight"><pre>[Gatling stats]
+priority = 110
+pattern = ^gatling\..*
+retentions = 1s:6d,10s:60d
+</pre></div>
+</div>
+<p>In <tt class="docutils literal"><span class="pre">$GRAPHITE_HOME/conf/storage-aggregation.conf</span></tt>:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="o">[</span><span class="kt">sum</span><span class="o">]</span>
+<span class="n">pattern</span> <span class="k">=</span> <span class="o">\.</span><span class="n">count$</span>
+<span class="n">xFilesFactor</span> <span class="k">=</span> <span class="mi">0</span>
+<span class="n">aggregationMethod</span> <span class="k">=</span> <span class="n">sum</span>
+
+<span class="o">[</span><span class="kt">min</span><span class="o">]</span>
+<span class="n">pattern</span> <span class="k">=</span> <span class="o">\.</span><span class="n">min$</span>
+<span class="n">xFilesFactor</span> <span class="k">=</span> <span class="mf">0.1</span>
+<span class="n">aggregationMethod</span> <span class="k">=</span> <span class="n">min</span>
+
+<span class="o">[</span><span class="kt">max</span><span class="o">]</span>
+<span class="n">pattern</span> <span class="k">=</span> <span class="o">\.</span><span class="n">max$</span>
+<span class="n">xFilesFactor</span> <span class="k">=</span> <span class="mf">0.1</span>
+<span class="n">aggregationMethod</span> <span class="k">=</span> <span class="n">max</span>
+
+<span class="o">[</span><span class="kt">default_average</span><span class="o">]</span>
+<span class="n">pattern</span> <span class="k">=</span> <span class="o">.*</span>
+<span class="n">xFilesFactor</span> <span class="k">=</span> <span class="mf">0.3</span>
+<span class="n">aggregationMethod</span> <span class="k">=</span> <span class="n">average</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="influxdb-tool-configuration">
+<h3>InfluxDB tool configuration<a class="headerlink" href="#influxdb-tool-configuration" title="Permalink to this headline">¶</a></h3>
+<p>InfluxDB does not need any storage configuration initially, but some changes to the config.toml to enable the Graphite protocol.
+It does not have a charting component however, so it integrates with a dedicated charting tool, for example Grafana.</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="o">[</span><span class="kt">input_plugins</span><span class="o">]</span>
+
+<span class="k">#</span> <span class="nc">Configure</span> <span class="n">the</span> <span class="n">graphite</span> <span class="n">api</span>
+<span class="o">[</span><span class="kt">input_plugins.graphite</span><span class="o">]</span>
+<span class="n">enabled</span> <span class="k">=</span> <span class="kc">true</span>
+<span class="n">port</span> <span class="k">=</span> <span class="mi">2003</span>
+<span class="n">database</span> <span class="k">=</span> <span class="s">&quot;gatling&quot;</span>  <span class="k">#</span> <span class="n">store</span> <span class="n">graphite</span> <span class="n">data</span> <span class="n">in</span> <span class="k">this</span> <span class="n">database</span>
+<span class="k">#</span> <span class="n">udp_enabled</span> <span class="k">=</span> <span class="kc">true</span> <span class="k">#</span> <span class="n">enable</span> <span class="n">udp</span> <span class="n">interface</span> <span class="n">on</span> <span class="n">the</span> <span class="n">same</span> <span class="n">port</span> <span class="n">as</span> <span class="n">the</span> <span class="n">tcp</span> <span class="n">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collectd-configuration">
+<h3>collectd configuration<a class="headerlink" href="#collectd-configuration" title="Permalink to this headline">¶</a></h3>
+<p>collectd needs configuring in the collectd.conf file after installation:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="o">...</span>
+<span class="nc">LoadPlugin</span> <span class="n">write_graphite</span>
+<span class="o">...</span>
+<span class="o">&lt;</span><span class="nc">Plugin</span> <span class="n">write_graphite</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="nc">Node</span> <span class="s">&quot;example&quot;</span><span class="o">&gt;</span>
+  <span class="nc">Host</span> <span class="s">&quot;receiving.server.hostname&quot;</span>
+  <span class="nc">Port</span> <span class="s">&quot;2003&quot;</span>
+  <span class="nc">Protocol</span> <span class="s">&quot;tcp&quot;</span>
+  <span class="nc">LogSendErrors</span> <span class="kc">true</span>
+  <span class="nc">Prefix</span> <span class="s">&quot;collectd&quot;</span>
+  <span class="nc">Postfix</span> <span class="s">&quot;collectd&quot;</span>
+  <span class="nc">StoreRates</span> <span class="kc">true</span>
+  <span class="nc">AlwaysAppendDS</span> <span class="kc">false</span>
+  <span class="nc">EscapeCharacter</span> <span class="s">&quot;_&quot;</span>
+ <span class="o">&lt;/</span><span class="nc">Node</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nc">Plugin</span><span class="o">&gt;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="graphite-powershell-functions-configuration">
+<h3>Graphite powershell functions configuration<a class="headerlink" href="#graphite-powershell-functions-configuration" title="Permalink to this headline">¶</a></h3>
+<p>See the documentation here : <a class="reference external" href="https://github.com/MattHodge/Graphite-PowerShell-Functions">https://github.com/MattHodge/Graphite-PowerShell-Functions</a></p>
+</div>
+<div class="section" id="customizable-console-output-via-graphite-datastream">
+<h3>Customizable console output via graphite datastream<a class="headerlink" href="#customizable-console-output-via-graphite-datastream" title="Permalink to this headline">¶</a></h3>
+<p>Reporting can be a very user/system specific requirement. One possibility to obtain exactly what you want from realtime monitoring in the console is described below.</p>
+<p>Advantages of this approach are:</p>
+<ul class="simple">
+<li>You can script the format and contents of the output exactly as you want</li>
+<li>No need to set up Graphite server or timeseries databases as described above, which can take time.</li>
+<li>Frees up Gatling developers to concentrate on the core DSL and injection, etc, components.</li>
+<li>Inject load on 1 server and report to a console on another server (ProTip: if you have 5 injectors, the data can be sent to 1 central server...)</li>
+</ul>
+<p>Limitations:</p>
+<ul class="simple">
+<li>currently as described this will only work on X-platforms (Unix, Linux, OS X) load injectors (further work could adapt the setup for Windows in the future)</li>
+</ul>
+<p>Set up:</p>
+<ul class="simple">
+<li>Enable the graphite output in gatling.conf as above</li>
+<li>open a new console to write the realtime data to</li>
+<li>Modify to your requirements and run &#8220;netcat&#8221; listening on port 2003 (the default for the graphite protocol), and pipe the output to commands that will format the data as you wish.</li>
+<li>Start your test</li>
+</ul>
+<p>Scripts for running netcat and processing the output:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">#</span> <span class="n">command</span> <span class="n">to</span> <span class="n">run</span> <span class="n">the</span> <span class="n">graphite</span> <span class="n">console</span> <span class="n">output</span>
+<span class="n">nc</span> <span class="o">-</span><span class="n">l</span> <span class="mi">2003</span> <span class="o">|</span> <span class="n">awk</span> <span class="o">-</span><span class="n">f</span> <span class="n">a</span><span class="o">.</span><span class="n">awk</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">gatling_stats</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">#</span> <span class="n">awk</span> <span class="n">script</span> <span class="n">to</span> <span class="n">process</span> <span class="n">raw</span> <span class="n">graphite</span> <span class="n">protocol</span> <span class="n">data</span> <span class="n">stream</span>
+<span class="nc">BEGIN</span><span class="o">{</span>
+  <span class="n">print</span> <span class="s">&quot;--------- stats ....... timestamp RPS error_percent 95percentile_response_time active_users -----&quot;</span><span class="o">;</span>
+  <span class="n">curr</span><span class="k">=</span><span class="mi">0</span>
+<span class="o">}</span>
+
+<span class="o">{</span>
+  <span class="k">if</span><span class="o">(</span><span class="nc">$NF</span> <span class="o">!=</span> <span class="n">curr</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">print</span> <span class="nc">$NF</span><span class="s">&quot; &quot;</span><span class="n">n</span><span class="s">&quot; &quot;</span><span class="n">epct</span><span class="s">&quot; &quot;</span><span class="n">ptile</span><span class="s">&quot; &quot;</span><span class="n">u</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">curr</span><span class="o">=</span><span class="nc">$NF</span>
+<span class="o">}</span>
+
+<span class="o">/</span><span class="n">allRequests</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">count</span><span class="o">/</span>        <span class="o">{</span><span class="n">n</span><span class="o">=</span><span class="n">$2</span><span class="o">}</span>
+<span class="o">/</span><span class="n">allRequests</span><span class="o">.</span><span class="n">ko</span><span class="o">.</span><span class="n">count</span><span class="o">/</span>         <span class="o">{</span><span class="n">e</span><span class="o">=</span><span class="n">$2</span><span class="o">;</span> <span class="k">if</span><span class="o">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="o">){</span><span class="n">epct</span><span class="k">=</span><span class="mi">0</span><span class="o">}</span><span class="k">else</span><span class="o">{</span><span class="n">epct</span><span class="k">=</span><span class="n">int</span><span class="o">(</span><span class="n">e</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="mi">100</span><span class="o">)}}</span>
+<span class="o">/</span><span class="n">allRequests</span><span class="o">.</span><span class="n">ok</span><span class="o">.</span><span class="n">percentiles95</span><span class="o">/</span> <span class="o">{</span><span class="n">ptile</span><span class="o">=</span><span class="n">$2</span><span class="o">}</span>
+<span class="o">/</span><span class="n">users</span><span class="o">.</span><span class="n">allUsers</span><span class="o">.</span><span class="n">active</span><span class="o">/</span>        <span class="o">{</span><span class="n">u</span><span class="o">=</span><span class="n">$2</span><span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="graphite-tool-chart-examples">
+<h2>Graphite tool chart Examples<a class="headerlink" href="#graphite-tool-chart-examples" title="Permalink to this headline">¶</a></h2>
+<p>All the following charts have been done with this line mode : <tt class="docutils literal"><span class="pre">Graph</span> <span class="pre">Options\Line</span> <span class="pre">Mode\Connected</span> <span class="pre">Line</span></tt></p>
+<p>Graphing the <tt class="docutils literal"><span class="pre">.max</span></tt> is usually a good start to monitor a given request.</p>
+<img alt="MaxEvolution" src="../_images/max.png" />
+<p>One may be interested in monitoring the number of requests per second with <tt class="docutils literal"><span class="pre">.count</span></tt>.</p>
+<img alt="CountEvolution" src="../_images/count.png" />
+<p>One can easily graph the total number of requests executed thanks to the Graphite <tt class="docutils literal"><span class="pre">integral()</span></tt> function.</p>
+<img alt="CountTotal" src="../_images/count_integral.png" />
+</div>
+</div>
+
+
+        </div>
+        <div class="col-md-3">
+          <aside id="affix" class="visible-md visible-lg">
+            <ul class="nav">
+<li><a class="reference internal" href="#">Realtime monitoring</a><ul class="nav">
+<li><a class="reference internal" href="#metrics">Metrics</a><ul class="nav">
+<li><a class="reference internal" href="#user-metrics">User metrics</a></li>
+<li><a class="reference internal" href="#request-metrics">Request metrics</a></li>
+<li><a class="reference internal" href="#system-under-test-metrics">System under test metrics</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul class="nav">
+<li><a class="reference internal" href="#gatling-configuration">Gatling Configuration</a></li>
+<li><a class="reference internal" href="#graphite-tool-configuration">Graphite tool configuration</a></li>
+<li><a class="reference internal" href="#influxdb-tool-configuration">InfluxDB tool configuration</a></li>
+<li><a class="reference internal" href="#collectd-configuration">collectd configuration</a></li>
+<li><a class="reference internal" href="#graphite-powershell-functions-configuration">Graphite powershell functions configuration</a></li>
+<li><a class="reference internal" href="#customizable-console-output-via-graphite-datastream">Customizable console output via graphite datastream</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#graphite-tool-chart-examples">Graphite tool chart Examples</a></li>
+</ul>
+</li>
+</ul>
+
+            
+<hr>
+<ul class="nav">
+  <li>
+    <a href="https://github.com/gatling/gatling/edit/master/src/sphinx/realtime_monitoring/index.rst">Edit this page on Github</a>
+  </li>
+  <h5>Previous topic</h5>
+  <li>
+    <a href="../jms.html" title="Previous Chapter: JMS">
+      JMS
+    </a>
+  </li>
+  <h5>Next topic</h5>
+  <li>
+    <a href="../extensions/index.html" title="Next Chapter: Extensions">
+      Extensions
+    </a>
+  </li>
+</ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<footer id="footer">
+  <header class="row-fluid">
+    <div class="content-wrapper text-center">
+      Gatling is an open-source load testing framework based on
+      <strong>Scala</strong>, <strong>Akka</strong> and <strong>Netty</strong>
+    </div>
+  </header>
+  <section class="row-fluid">
+    <div class="content-wrapper text-center">&copy;2014 eBusiness Information 2000-2014</div>
+  </section>
+</footer>
+
+
+
+
+
+
+  </body>
+</html>

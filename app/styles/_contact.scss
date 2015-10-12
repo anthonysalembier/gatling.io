@@ -1,0 +1,44 @@
+@import "variables";
+
+#contact {
+  text-align: center;
+  min-height: 100%;
+
+  h2 {
+    color: $logo-orange;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  h4 {
+    color: $logo-orange;
+    font-weight: bold;
+  }
+
+  .contact-container {
+    @include dflex();
+    max-width: 600px;
+    text-align: left;
+    border-radius: 4px;
+    padding: 30px;
+    margin: auto;
+    background-color: white;
+    @include box-shadow-pref();
+
+    .contact-content {
+      @include dflex();
+      @include flex-direction(column);
+      margin-left: 30px;
+
+      .contact-text {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+#gatling-map {
+  position: relative;
+  height: 330px;
+}

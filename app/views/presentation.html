@@ -1,0 +1,13 @@
+<div id="presentation">
+  <div class="element" ng-repeat="view in selectedView">
+    <div ng-if="$odd">
+      <div class="title" translate="{{view.title}}"></div>
+      <div class="text" translate="{{view.text}}"></div>
+    </div>
+    <img class="img" src="{{view.img}}" />
+    <div ng-if="$even">
+      <div class="title" translate="{{view.title}}"></div>
+      <div class="text" translate="{{view.text}}"></div>
+    </div>
+  </div>
+</div>

@@ -33,10 +33,35 @@ app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider', functi
       url: '/download',
       templateUrl: 'views/download.html'
     })
+    .state('values', {
+      url: '/values',
+      templateUrl: "views/presentation.html",
+      controller: 'PresentationCtrl'
+    })
+    .state('why', {
+      url: '/why',
+      templateUrl: "views/presentation.html",
+      controller: 'PresentationCtrl'
+    })
+    .state('history', {
+      url: '/history',
+      templateUrl: "views/presentation.html",
+      controller: 'PresentationCtrl'
+    })
+    .state('contact', {
+      url: '/contact',
+      templateUrl: "views/contact.html"
+    })
     .state('services', {
       url: '/services',
-      templateUrl: 'views/services.html'
+      templateUrl: 'views/services.html',
+      controller: 'ServicesCtrl'
       })
+    .state('presentation', {
+      url: '/presentation',
+      templateUrl: "views/presentation.html",
+      controller: 'PresentationCtrl'
+    })
     .state('training', {
       url: '/services/training',
       templateUrl: 'views/training.html'
@@ -64,4 +89,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider', functi
         suffix: '.json'
       })
       .preferredLanguage('en');
+}]);
+
+app.run(['$rootScope', '$http', function($rootScope, $http) {
+  hljs.configure({classPrefix: ''});
+  hljs.initHighlightingOnLoad();
+
+  $http.get('conf/conf.json').success(function(data) {
+    $rootScope.version = data.version;
+  });
 }]);
