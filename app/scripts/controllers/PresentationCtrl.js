@@ -23,12 +23,12 @@ var PresentationCtrl = function ($scope, $location) {
       },
       {
         title: 'VALUES_TITLE_2',
-        img: 'images/gatling.png',
+        img: 'images/agility.png',
         text: 'VALUES_CONTENT_2'
       },
       {
         title: 'VALUES_TITLE_3',
-        img: 'images/gatling.png',
+        img: '/images/highperf.png',
         text: 'VALUES_CONTENT_3'
       }
     ],
