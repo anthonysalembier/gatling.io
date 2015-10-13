@@ -25,6 +25,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider', functi
       templateUrl: 'views/main.html',
       controller: 'ConceptCtrl'
     })
+    .state('cheat-sheet', {
+      url: '/cheat-sheet/:version',
+      templateUrl: 'views/docs/cheat-sheet.html'
+    })
     .state('docs', {
       url: '/docs',
       templateUrl: 'views/docs.html'
