@@ -33,6 +33,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider', functi
       url: '/docs',
       templateUrl: 'views/docs.html'
     })
+    .state('talks', {
+      url: '/docs/talks',
+      templateUrl: 'views/docs/talks.html',
+      controller: 'DocsCtrl'
+    })
+    .state('about', {
+      url: '/docs/about',
+      templateUrl: 'views/docs/about.html',
+      controller: 'DocsCtrl'
+    })
     .state('download', {
       url: '/download',
       templateUrl: 'views/download.html'

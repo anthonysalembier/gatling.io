@@ -319,3 +319,19 @@
     }
   }
 }
+
+#talks, #about {
+  h1 {
+    border-bottom: 1px solid #eee;
+    margin-top: 60px;
+  }
+  h1, h2 {
+    color: $logo-orange;
+  }
+
+  .talks-container, .about-container {
+    @include dflex();
+    @include flex-direction(column);
+    @include justify-content(center);
+  }
+}

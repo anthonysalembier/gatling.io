@@ -1,4 +1,4 @@
-app.directive('cheatSheet', function($rootScope) {
+app.directive('cheatSheet', ["$rootScope",function($rootScope) {
 
   return {
     restrict: 'E',
@@ -6,8 +6,7 @@ app.directive('cheatSheet', function($rootScope) {
     template: '<div ng-include="cheatSheetUrl"></div>',
 
     link: function(scope) {
-      console.log($rootScope.version);
       scope.cheatSheetUrl = 'docs/' + $rootScope.version + '/cheat-sheet.html';
     }
   };
-});
+}]);

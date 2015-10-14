@@ -26,7 +26,7 @@
  *   }
  * }
  */
-app.directive("scrollDetection", function ($window, $timeout) {
+app.directive("scrollDetection", ["$window", "$timeout", function($window, $timeout) {
  return function(scope, element, attrs) {
    var windowElem = angular.element($window);
    var itemTimeout = null;
@@ -85,4 +85,4 @@ app.directive("scrollDetection", function ($window, $timeout) {
 
    $timeout(checkOffset);
  };
-});
+}]);

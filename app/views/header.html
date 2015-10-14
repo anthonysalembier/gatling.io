@@ -30,8 +30,8 @@ without the express written permission of eBusiness Information.
           <li class="dropdown"
               ng-class="{'active' : location === '/download'
                                  || location === '/docs'
-                                 || location === '/talks'
-                                 || location === '/about'}">
+                                 || location === '/docs/talks'
+                                 || location === '/docs/about'}">
             <a href="" class="dropdown-toggle"
                data-toggle="dropdown" role="button">
               <span translate="MENU_RESOURCES"></span>
@@ -42,10 +42,10 @@ without the express written permission of eBusiness Information.
                      ng-class="{'active-sub-menu' : location === '/download'}"></a></li>
               <li><a href="#/docs" translate="MENU_RESOURCES_DOCUMENTATION"
                      ng-class="{'active-sub-menu' : location === '/docs'}"></a></li>
-              <li><a href="/docs/{{version}}/project/events.html" translate="MENU_RESOURCES_TALKS"
-                     ng-class="{'active-sub-menu' : location === '#/docs/' + version + '/project/events.html'}"></a></li>
-              <li><a href="/docs/{{version}}/project/online_resources.html" translate="MENU_RESOURCES_ABOUT"
-                     ng-class="{'active-sub-menu' : location === '#/docs/' + version + '/project/online_resources.html'}"></a></li>
+              <li><a href="#/docs/talks" translate="MENU_RESOURCES_TALKS"
+                     ng-class="{'active-sub-menu' : location === '/docs/talks'}"></a></li>
+              <li><a href="#/docs/about" translate="MENU_RESOURCES_ABOUT"
+                     ng-class="{'active-sub-menu' : location === '/docs/about'}"></a></li>
             </ul>
           </li>
 
