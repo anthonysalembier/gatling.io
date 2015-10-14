@@ -5,9 +5,9 @@ may not be reproduced or used in any manner whatsoever
 without the express written permission of eBusiness Information.
 -->
 
-<div class="modal-legals" ng-click="toggleLegals(true)" ng-class="{'opened' : showLegals}">
+<div ng-if="showLegals" class="modal-legals" ng-click="toggleLegals(true)" ng-class="{'opened' : showLegals}">
   <div class="modal-legals-container">
-    <div class="modal-legals-box" ng-click="toggleLegals(false)" >
+    <div class="modal-legals-box" ng-click="toggleLegals(false)">
       <div class="modal-close">
         &times;
       </div>

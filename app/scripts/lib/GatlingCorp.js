@@ -251,7 +251,7 @@ var MapManager =  {
         var anchorY = point.typeItem.anchorY;
         var popupAnchorX = -anchorX + ( sizes[point.typeItem.markerSize][0] / 2 );
         var popupAnchorY = -anchorY;
-        var iconSize = [48, 48];
+        var iconSize = [40, 48];
 
         var icon = L.icon({ iconUrl : point.iconUrl, iconSize: iconSize, iconAnchor: [anchorX,anchorY], popupAnchor : [popupAnchorX, popupAnchorY]});
         currentMarker = L.marker([point.latLng.lat, point.latLng.lng], {icon: icon});
@@ -378,7 +378,7 @@ var MapManager =  {
           "name" : "Gatling Corp",
           "icon" : "GatlingPOI.png",
           "markerSize" : "large",
-          "anchorX" : 24,
+          "anchorX" : 20,
           "anchorY" : 48,
           "fields" : [
             "Address",

@@ -48,6 +48,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider', functi
       templateUrl: "views/presentation.html",
       controller: 'PresentationCtrl'
     })
+    .state('team', {
+      url: '/team',
+      templateUrl: "views/presentation.html",
+      controller: 'PresentationCtrl'
+    })
     .state('contact', {
       url: '/contact',
       templateUrl: "views/contact.html"

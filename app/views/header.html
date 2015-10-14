@@ -51,9 +51,9 @@ without the express written permission of eBusiness Information.
 
           <!--PROFESSIONAL SERVICES-->
           <li class="dropdown"
-              ng-class="{'active' : location === '/presentation'
-                                 || location === '/presentation'
-                                 || location === '/presentation'
+              ng-class="{'active' : location === '/services'
+                                 || location === '/services/training'
+                                 || location === '/stories'
                                  || location === '/why'}">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown" role="button">
@@ -61,10 +61,10 @@ without the express written permission of eBusiness Information.
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#/" translate="MENU_PROFESSIONAL_SERVICES_SUPPORT"
-                     ng-class="{'active-sub-menu' : location === '/'}"></a></li>
-              <li><a href="#/" translate="MENU_PROFESSIONAL_SERVICES_TRAINING"
-                     ng-class="{'active-sub-menu' : location === '/'}"></a></li>
+              <li><a href="#/services" translate="MENU_PROFESSIONAL_SERVICES_SUPPORT"
+                     ng-class="{'active-sub-menu' : location === '/services'}"></a></li>
+              <li><a href="#/services/training" translate="MENU_PROFESSIONAL_SERVICES_TRAINING"
+                     ng-class="{'active-sub-menu' : location === '/services/training'}"></a></li>
               <li><a href="#/stories" translate="MENU_PROFESSIONAL_SERVICES_STORIES"
                      ng-class="{'active-sub-menu' : location === '/stories'}"></a></li>
               <li><a href="#/why" translate="MENU_PROFESSIONAL_SERVICES_WHY"
@@ -76,7 +76,7 @@ without the express written permission of eBusiness Information.
           <li class="dropdown"
               ng-class="{'active' : location === '/values'
                                  || location === '/history'
-                                 || location === '/presentation'
+                                 || location === '/team'
                                  || location === '/contact'}">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown" role="button">
@@ -90,8 +90,8 @@ without the express written permission of eBusiness Information.
               <li><a href="#/history" translate="MENU_COMPANY_HISTORY"
                      ng-class="{'active-sub-menu' : location === '/history'}"></a>
               </li>
-              <li><a href="#/" translate="MENU_COMPANY_TEAM"
-                     ng-class="{'active-sub-menu' : location === '/'}"></a>
+              <li><a href="#/team" translate="MENU_COMPANY_TEAM"
+                     ng-class="{'active-sub-menu' : location === '/team'}"></a>
               </li>
               <li><a href="#/contact" translate="MENU_COMPANY_CONTACT"
                      ng-class="{'active-sub-menu' : location === '/contact'}"></a>
@@ -99,7 +99,8 @@ without the express written permission of eBusiness Information.
             </ul>
           </li>
 
-          <li ng-class="{'active' : location == '/docs'}"><a href="#/" translate="MENU_BLOG"></a></li>
+          <!--BLOG-->
+          <li><a href="http://blog.gatling.io/" translate="MENU_BLOG"></a></li>
 
           <!--SHARE-->
           <li class="dropdown">
@@ -118,15 +119,33 @@ without the express written permission of eBusiness Information.
                 </a>
               </li>
               <li>
+                <a href="https://groups.google.com/forum/#!forum/gatling" target="_blank">
+                  <i class="fa fa-google-plus"></i>
+                  <span translate="MENU_SHARE_GOOGLEPLUS"></span>
+                </a>
+              </li>
+              <li>
                 <a href="https://twitter.com/GatlingTool" target="_blank">
                   <i class="fa fa-twitter"></i>
                   <span translate="MENU_SHARE_TWITTER"></span>
                 </a>
               </li>
               <li>
-                <a href="https://groups.google.com/forum/#!forum/gatling" target="_blank">
-                  <i class="fa fa-google-plus"></i>
-                  <span translate="MENU_SHARE_GOOGLEPLUS"></span>
+                <a href="https://www.linkedin.com/company/gatling" target="_blank">
+                  <i class="fa fa-linkedin"></i>
+                  <span translate="MENU_SHARE_LINKEDIN"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/GatlingTool" target="_blank">
+                  <i class="fa fa-facebook-official"></i>
+                  <span translate="MENU_SHARE_FACEBOOK"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/channel/UCaNih6sKuJ9DIMjTEW1EAlQ" target="_blank">
+                  <i class="fa fa-youtube"></i>
+                  <span translate="MENU_SHARE_YOUTUBE"></span>
                 </a>
               </li>
             </ul>
