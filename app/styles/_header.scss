@@ -170,6 +170,10 @@
     }
   }
 
+  .not-focused {
+    background-color: transparent !important;
+  }
+
   .navbar-right {
     .dropdown-menu {
       left: 0;
